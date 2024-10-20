@@ -114,10 +114,11 @@ public class Run {
 
     private void printHelpAndExit(Options options, int exitCode) {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("help\n" +
-                "If null of crawlers it will be start all crawlers interface.\n" +
-                "If port of httpd is null,it will be just start all crawler with out API server.\n" +
-                "If both of args are null,it will be just start a agent waiting for queue order.", options);
+        formatter.printHelp("""
+                help
+                If null of crawlers it will be start all crawlers interface.
+                If port of httpd is null,it will be just start all crawler with out API server.
+                If both of args are null,it will be just start a agent waiting for queue order.""", options);
         System.exit(exitCode);
     }
 

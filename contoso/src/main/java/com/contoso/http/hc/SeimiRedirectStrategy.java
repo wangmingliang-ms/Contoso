@@ -39,8 +39,7 @@ public class SeimiRedirectStrategy extends LaxRedirectStrategy {
     public HttpUriRequest getRedirect(HttpRequest request, HttpResponse response, HttpContext context) throws ProtocolException {
         URI uri = getLocationURI(request, response, context);
         String method = request.getRequestLine().getMethod();
-        if (HttpPost.METHOD_NAME.equalsIgnoreCase(method)&& request instanceof HttpRequestWrapper) {
-            HttpRequestWrapper httpRequestWrapper = (HttpRequestWrapper) request;
+        if (HttpPost.METHOD_NAME.equalsIgnoreCase(method)&& request instanceof HttpRequestWrapper httpRequestWrapper) {
             httpRequestWrapper.setURI(uri);
             httpRequestWrapper.removeHeaders("Content-Length");
             return httpRequestWrapper;
