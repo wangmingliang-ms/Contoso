@@ -1,7 +1,7 @@
 package com.contoso.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * StrFormatUtil Tester.
@@ -19,6 +19,6 @@ public class StrFormatUtilTest {
         String t = "text/html; charset=utf-16;text/html; charset=utf-8";
         String r = StrFormatUtil.parseCharset(t);
         System.out.println(r);
-        Assert.assertTrue("utf-8".equals(r));
+        Assertions.assertTrue("utf-8".equals(r));
     }
 }

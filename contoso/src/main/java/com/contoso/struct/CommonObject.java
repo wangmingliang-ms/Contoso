@@ -25,6 +25,7 @@ import java.io.Serializable;
  * @since 2015/5/31.
  */
 public class CommonObject implements Serializable {
+    @Serial
     private static final long serialVersionUID = -3239260503197729552L;
 
     @Override

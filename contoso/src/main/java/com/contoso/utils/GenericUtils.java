@@ -64,18 +64,18 @@ public class GenericUtils {
      */
     public static Class<?>[] getActualClass(Type genericType) {
 
-        if (genericType instanceof ParameterizedType) {
+        if (genericType instanceof ParameterizedType type) {
 
-            Type[] actualTypes = ((ParameterizedType) genericType).getActualTypeArguments();
+            Type[] actualTypes = type.getActualTypeArguments();
             Class<?>[] actualClasses = new Class<?>[actualTypes.length];
 
             int i = 0;
             while (i < actualTypes.length) {
                 Type actualType = actualTypes[i];
-                if (actualType instanceof Class<?>) {
-                    actualClasses[i] = (Class<?>) actualType;
-                } else if (actualType instanceof GenericArrayType) {
-                    Type componentType = ((GenericArrayType) actualType).getGenericComponentType();
+                if (actualType instanceof Class<?> class1) {
+                    actualClasses[i] = class1;
+                } else if (actualType instanceof GenericArrayType type) {
+                    Type componentType = type.getGenericComponentType();
                     actualClasses[i] = Array.newInstance((Class<?>) componentType, 0).getClass();
                 }
                 i++;
@@ -133,12 +133,12 @@ public class GenericUtils {
         try {
             invoker.accept((T) enhancer.create());
         } catch (ClassCastException e) {
-            throw new IllegalArgumentException(String.format("Invalid method reference on class [%s]", clazz));
+            throw new IllegalArgumentException("Invalid method reference on class [%s]".formatted(clazz));
         }
 
         Method method = ref.get();
         if (method == null) {
-            throw new IllegalArgumentException(String.format("Invalid method reference on class [%s]", clazz));
+            throw new IllegalArgumentException("Invalid method reference on class [%s]".formatted(clazz));
         }
 
         return method;

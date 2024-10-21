@@ -40,7 +40,7 @@ public class StrFormatUtil {
         if (CollectionUtils.isEmpty(list)){
             return def;
         }
-        return list.get(0).toString();
+        return list.getFirst().toString();
     }
 
     public static String parseCharset(String target){

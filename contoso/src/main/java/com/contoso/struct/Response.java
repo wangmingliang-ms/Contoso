@@ -243,8 +243,8 @@ public class Response extends CommonObject {
         if (String.class.isAssignableFrom(componentClass)){
             List<String> resTmp = new LinkedList<>();
             for (Object obj:xpathRes){
-                if (obj instanceof Element){
-                    resTmp.add(((Element)obj).html());
+                if (obj instanceof Element element){
+                    resTmp.add(element.html());
                 }else {
                     resTmp.add(obj.toString());
                 }
