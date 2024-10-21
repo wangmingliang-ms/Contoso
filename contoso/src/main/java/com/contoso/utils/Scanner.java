@@ -2,7 +2,7 @@ package com.contoso.utils;
 
 import java.util.regex.Pattern;
 
-import sun.misc.LRUCache;
+import java.util.LinkedHashMap;
 
 public class Scanner {
 
@@ -15,7 +15,7 @@ public class Scanner {
     private Object typeCache = null;
     private Readable source;
 
-    private LRUCache<String, Pattern> patternCache = new LRUCache<String, Pattern>(10) {
+    private LinkedHashMap<String, Pattern> patternCache = new LinkedHashMap<String, Pattern>(10) {
         protected Pattern create(String s) {
             return Pattern.compile(s);
         }

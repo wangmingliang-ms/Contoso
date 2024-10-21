@@ -5,10 +5,10 @@ import java.util.regex.Matcher;
 import java.util.List;
 import java.util.ArrayList;
 
-import sun.misc.LRUCache;
+import java.util.LinkedHashMap;
 
 public class UrlValidator {
-    private LRUCache<String, Pattern> patternCache = new LRUCache<String, Pattern>(10) {
+    private LinkedHashMap<String, Pattern> patternCache = new LinkedHashMap<String, Pattern>(10) {
         protected Pattern create(String s) {
             return Pattern.compile(s);
         }
