@@ -24,21 +24,21 @@ public class UrlValidator {
     }
 
     public void addUrlPattern(String urlPattern) {
-        patternCache.forName(urlPattern);
+        patternCache.put(urlPattern, Pattern.compile(urlPattern));
     }
 
     public Pattern getUrlPattern(String urlPattern) {
-        return patternCache.forName(urlPattern);
+        return patternCache.computeIfAbsent(urlPattern, Pattern::compile);
     }
 
     public boolean isMatch(String urlPattern, String url) {
-        Pattern pattern = patternCache.forName(urlPattern);
+        Pattern pattern = patternCache.computeIfAbsent(urlPattern, Pattern::compile);
         Matcher matcher = pattern.matcher(url);
         return matcher.find();
     }
 
     public List<String> findAllMatches(String urlPattern, String url) {
-        Pattern pattern = patternCache.forName(urlPattern);
+        Pattern pattern = patternCache.computeIfAbsent(urlPattern, Pattern::compile);
         Matcher matcher = pattern.matcher(url);
         List<String> matches = new ArrayList<>();
         while (matcher.find()) {
@@ -48,7 +48,7 @@ public class UrlValidator {
     }
 
     public String replaceAll(String urlPattern, String url, String replacement) {
-        Pattern pattern = patternCache.forName(urlPattern);
+        Pattern pattern = patternCache.computeIfAbsent(urlPattern, Pattern::compile);
         return pattern.matcher(url).replaceAll(replacement);
     }
 }

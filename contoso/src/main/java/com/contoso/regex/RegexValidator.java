@@ -18,18 +18,18 @@ public class RegexValidator {
     };
 
     public boolean isValid(String regex, String input) {
-        Pattern pattern = patternCache.forName(regex);
+        Pattern pattern = patternCache.computeIfAbsent(regex, Pattern::compile);
         return pattern.matcher(input).matches();
     }
 
     public boolean isMatch(String regex, String input) {
-        Pattern pattern = patternCache.forName(regex);
+        Pattern pattern = patternCache.computeIfAbsent(regex, Pattern::compile);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }
 
     public List<String> findAllMatches(String regex, String input) {
-        Pattern pattern = patternCache.forName(regex);
+        Pattern pattern = patternCache.computeIfAbsent(regex, Pattern::compile);
         Matcher matcher = pattern.matcher(input);
         List<String> matches = new ArrayList<>();
         while (matcher.find()) {
@@ -39,12 +39,12 @@ public class RegexValidator {
     }
 
     public String replaceAll(String regex, String input, String replacement) {
-        Pattern pattern = patternCache.forName(regex);
+        Pattern pattern = patternCache.computeIfAbsent(regex, Pattern::compile);
         return pattern.matcher(input).replaceAll(replacement);
     }
 
     public String[] split(String regex, String input) {
-        Pattern pattern = patternCache.forName(regex);
+        Pattern pattern = patternCache.computeIfAbsent(regex, Pattern::compile);
         return pattern.split(input);
     }
 }
