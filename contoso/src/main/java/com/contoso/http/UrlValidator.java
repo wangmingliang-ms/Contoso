@@ -19,7 +19,7 @@ public class UrlValidator {
     };
 
     public boolean isValidUrl(String urlPattern, String url) {
-        Pattern pattern = patternCache.forName(urlPattern);
+        Pattern pattern = patternCache.computeIfAbsent(urlPattern, Pattern::compile);
         return pattern.matcher(url).matches();
     }
 
