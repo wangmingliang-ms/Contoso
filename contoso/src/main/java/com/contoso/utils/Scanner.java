@@ -2,7 +2,7 @@ package com.contoso.utils;
 
 import java.util.regex.Pattern;
 
-import sun.misc.LRUCache;
+import java.util.LinkedHashMap;
 
 public class Scanner {
 
@@ -15,7 +15,7 @@ public class Scanner {
     private Object typeCache = null;
     private Readable source;
 
-    private LRUCache<String, Pattern> patternCache = new LRUCache<String, Pattern>(10) {
+    private LinkedHashMap<String, Pattern> patternCache = new LinkedHashMap<String, Pattern>(10) {
         protected Pattern create(String s) {
             return Pattern.compile(s);
         }
@@ -31,7 +31,7 @@ public class Scanner {
     }
 
     public Scanner useDelimiter(String pattern) {
-        delimPattern = patternCache.forName(pattern);
+        delimPattern = patternCache.computeIfAbsent(pattern, Pattern::compile);
         return this;
     }
 
@@ -46,7 +46,7 @@ public class Scanner {
     }
 
     public boolean hasNext(String pattern) {
-        return hasNext(patternCache.forName(pattern));
+        return hasNext(patternCache.computeIfAbsent(pattern, Pattern::compile));
     }
 
     private String getCachedResult() {
@@ -69,6 +69,6 @@ public class Scanner {
     }
 
     public String next(String pattern) {
-        return next(patternCache.forName(pattern));
+        return next(patternCache.computeIfAbsent(pattern, Pattern::compile));
     }
 }
