@@ -2,7 +2,7 @@ package com.contoso.main;
 
 import com.contoso.config.SeimiConfig;
 import com.contoso.core.Seimi;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author SeimiMaster seimimaster@gmail.com
