@@ -102,7 +102,7 @@ public class OkHttpDownloader implements SeimiDownloader {
             Cookie.Builder cookieBuilder = new  Cookie.Builder();
             cookieBuilder.name(contCookie.getName()).value(contCookie.getValue())
             .path(StringUtils.isNotBlank(contCookie.getPath())?contCookie.getPath():"/")
-            .domain(StringUtils.isNotBlank(seimiCookie.getDomain())?seimiCookie.getDomain():StrFormatUtil.getDodmain(url));
+            .domain(StringUtils.isNotBlank(contCookie.getDomain())?contCookie.getDomain():StrFormatUtil.getDodmain(url));
             try {
                 crawlerModel.getOkHttpCookiesManager().addCookie(new URI(url),cookieBuilder.build());
             } catch (URISyntaxException e) {

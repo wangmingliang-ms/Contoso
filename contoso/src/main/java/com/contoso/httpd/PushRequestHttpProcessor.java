@@ -77,12 +77,12 @@ public class PushRequestHttpProcessor extends HttpRequestProcessor {
     }
 
     private void pushRequest(Request contRequest){
-        seimiRequest.setCrawlerName(crawlerName);
-        if (StructValidator.validateAnno(seimiRequest)){
-            seimiQueue.push(seimiRequest);
-            logger.info("Receive an request from http api,request={}",JSON.toJSONString(seimiRequest));
+        contRequest.setCrawlerName(crawlerName);
+        if (StructValidator.validateAnno(contRequest)){
+            contQueue.push(contRequest);
+            logger.info("Receive an request from http api,request={}",JSON.toJSONString(contRequest));
         }else {
-            logger.warn("SeimiRequest={} is illegal",JSON.toJSONString(seimiRequest));
+            logger.warn("SeimiRequest={} is illegal",JSON.toJSONString(contRequest));
         }
     }
 }

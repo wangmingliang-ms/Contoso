@@ -4,7 +4,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.contoso</groupId>
-	<artifactId>Contoso</artifactId>
+	<artifactId>contoso-parent</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
@@ -15,7 +15,7 @@
     </modules>
     <developers>
         <developer>
-            <name>johndoe</name>
+            <name>meganb</name>
             <email>contmaster@gmail.com</email>
         </developer>
     </developers>

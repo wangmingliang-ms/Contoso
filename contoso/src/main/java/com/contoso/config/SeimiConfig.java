@@ -38,7 +38,7 @@ public class SeimiConfig {
     private double bloomFilterFalseProbability;
 
     /**
-     * 设置SeimiAgent的主机地址，如 cont.johndoe.cn or 10.10.121.211
+     * 设置SeimiAgent的主机地址，如 cont.meganb.cn or 10.10.121.211
      */
     private String contAgentHost;
 
@@ -157,16 +157,16 @@ public class SeimiConfig {
         return contAgentHost;
     }
 
-    public void setSeimiAgentHost(String seimiAgentHost) {
-        this.seimiAgentHost = seimiAgentHost;
+    public void setSeimiAgentHost(String contAgentHost) {
+        this.contAgentHost = contAgentHost;
     }
 
     public int getSeimiAgentPort() {
-        return seimiAgentPort;
+        return contAgentPort;
     }
 
-    public void setSeimiAgentPort(int seimiAgentPort) {
-        this.seimiAgentPort = seimiAgentPort;
+    public void setSeimiAgentPort(int contAgentPort) {
+        this.contAgentPort = contAgentPort;
     }
 
     public Config getRedissonConfig() {

@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Xpath语法可以参考 http://jsoupxpath.johndoe.cn/
+ * Xpath语法可以参考 http://jsoupxpath.meganb.cn/
  * @author 汪浩淼 et.tw@163.com
  * @since 2015/10/27.
  */

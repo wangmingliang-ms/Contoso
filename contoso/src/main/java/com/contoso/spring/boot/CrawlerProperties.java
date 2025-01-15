@@ -17,7 +17,7 @@ public class CrawlerProperties implements Serializable {
     private long bloomFilterExpectedInsertions;
     private double bloomFilterFalseProbability;
     /**
-     * SeimiAgent host address,such as cont.johndoe.cn or 10.10.121.211
+     * SeimiAgent host address,such as cont.meganb.cn or 10.10.121.211
      */
     private String contAgentHost;
 
@@ -67,11 +67,11 @@ public class CrawlerProperties implements Serializable {
     }
 
     public String getSeimiAgentHost() {
-        return seimiAgentHost;
+        return contAgentHost;
     }
 
-    public void setSeimiAgentHost(String seimiAgentHost) {
-        this.seimiAgentHost = seimiAgentHost;
+    public void setSeimiAgentHost(String contAgentHost) {
+        this.contAgentHost = contAgentHost;
     }
 
     public int getSeimiAgentPort() {

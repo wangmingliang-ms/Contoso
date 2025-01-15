@@ -105,7 +105,7 @@ public class HcDownloader implements SeimiDownloader {
         for (SeimiCookie contCookie:contCookies){
             BasicClientCookie cookie = new BasicClientCookie(contCookie.getName(), contCookie.getValue());
             cookie.setPath(StringUtils.isNotBlank(contCookie.getPath())?contCookie.getPath():"/");
-            cookie.setDomain(StringUtils.isNotBlank(contCookie.getDomain())?seimiCookie.getDomain():StrFormatUtil.getDodmain(url));
+            cookie.setDomain(StringUtils.isNotBlank(contCookie.getDomain())?contCookie.getDomain():StrFormatUtil.getDodmain(url));
             cookieStore.addCookie(cookie);
         }
     }
