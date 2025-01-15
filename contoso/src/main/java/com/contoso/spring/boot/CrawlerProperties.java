@@ -67,11 +67,11 @@ public class CrawlerProperties implements Serializable {
     }
 
     public String getSeimiAgentHost() {
-        return seimiAgentHost;
+        return contAgentHost;
     }
 
-    public void setSeimiAgentHost(String seimiAgentHost) {
-        this.seimiAgentHost = seimiAgentHost;
+    public void setSeimiAgentHost(String contAgentHost) {
+        this.contAgentHost = contAgentHost;
     }
 
     public int getSeimiAgentPort() {

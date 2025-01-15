@@ -43,35 +43,35 @@ public class OkHttpRequestGenerator {
                 formBodyBuilder.add("script", contReq.getSeimiAgentScript());
             }
             //如果针对SeimiAgent的请求设置是否使用cookie，以针对请求的设置为准，默认使用全局设置
-            if ((contReq.isSeimiAgentUseCookie() == null && crawlerModel.isUseCookie()) || (seimiReq.isSeimiAgentUseCookie() != null && seimiReq.isSeimiAgentUseCookie())) {
+            if ((contReq.isSeimiAgentUseCookie() == null && crawlerModel.isUseCookie()) || (contReq.isSeimiAgentUseCookie() != null && contReq.isSeimiAgentUseCookie())) {
                 formBodyBuilder.add("useCookie", "1");
             }
-            if (seimiReq.getParams() != null && seimiReq.getParams().size() > 0) {
-                formBodyBuilder.add("postParam", JSON.toJSONString(seimiReq.getParams()));
+            if (contReq.getParams() != null && contReq.getParams().size() > 0) {
+                formBodyBuilder.add("postParam", JSON.toJSONString(contReq.getParams()));
             }
-            if (seimiReq.getSeimiAgentContentType().val()> SeimiAgentContentType.HTML.val()){
-                formBodyBuilder.add("contentType",seimiReq.getSeimiAgentContentType().typeVal());
+            if (contReq.getSeimiAgentContentType().val()> SeimiAgentContentType.HTML.val()){
+                formBodyBuilder.add("contentType",contReq.getSeimiAgentContentType().typeVal());
             }
-            requestBuilder.url(seimiAgentUrl).post(formBodyBuilder.build()).build();
+            requestBuilder.url(contAgentUrl).post(formBodyBuilder.build()).build();
         }else {
-            requestBuilder.url(seimiReq.getUrl());
+            requestBuilder.url(contReq.getUrl());
             requestBuilder.header("User-Agent", crawlerModel.isUseCookie() ? crawlerModel.getCurrentUA() : crawler.getUserAgent())
                     .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
                     .header("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6");
             //自定义header
-            if (!CollectionUtils.isEmpty(seimiReq.getHeader())) {
-                for (Map.Entry<String,String> entry:seimiReq.getHeader().entrySet()) {
+            if (!CollectionUtils.isEmpty(contReq.getHeader())) {
+                for (Map.Entry<String,String> entry:contReq.getHeader().entrySet()) {
                     requestBuilder.addHeader(entry.getKey(), entry.getValue());
                 }
             }
-            if (HttpMethod.POST.equals(seimiReq.getHttpMethod())) {
-                if (StringUtils.isNotBlank(seimiReq.getJsonBody())){
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),seimiReq.getJsonBody());
+            if (HttpMethod.POST.equals(contReq.getHttpMethod())) {
+                if (StringUtils.isNotBlank(contReq.getJsonBody())){
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),contReq.getJsonBody());
                     requestBuilder.post(requestBody);
                 }else {
                     FormBody.Builder formBodyBuilder = new FormBody.Builder();
-                    if (seimiReq.getParams() != null) {
-                        for (Map.Entry<String, String> entry : seimiReq.getParams().entrySet()) {
+                    if (contReq.getParams() != null) {
+                        for (Map.Entry<String, String> entry : contReq.getParams().entrySet()) {
                             formBodyBuilder.add(entry.getKey(), entry.getValue());
                         }
                     }
@@ -79,12 +79,12 @@ public class OkHttpRequestGenerator {
                 }
             } else {
                 String queryStr = "";
-                if (seimiReq.getParams()!=null&&!seimiReq.getParams().isEmpty()){
+                if (contReq.getParams()!=null&&!contReq.getParams().isEmpty()){
                     queryStr += "?";
-                    for (Map.Entry<String, String> entry : seimiReq.getParams().entrySet()) {
+                    for (Map.Entry<String, String> entry : contReq.getParams().entrySet()) {
                         queryStr= queryStr+entry.getKey()+"="+entry.getValue()+"&";
                     }
-                    requestBuilder.url(seimiReq.getUrl()+queryStr);
+                    requestBuilder.url(contReq.getUrl()+queryStr);
                 }
                 requestBuilder.get();
             }

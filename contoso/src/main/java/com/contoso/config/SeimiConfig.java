@@ -157,16 +157,16 @@ public class SeimiConfig {
         return contAgentHost;
     }
 
-    public void setSeimiAgentHost(String seimiAgentHost) {
-        this.seimiAgentHost = seimiAgentHost;
+    public void setSeimiAgentHost(String contAgentHost) {
+        this.contAgentHost = contAgentHost;
     }
 
     public int getSeimiAgentPort() {
-        return seimiAgentPort;
+        return contAgentPort;
     }
 
-    public void setSeimiAgentPort(int seimiAgentPort) {
-        this.seimiAgentPort = seimiAgentPort;
+    public void setSeimiAgentPort(int contAgentPort) {
+        this.contAgentPort = contAgentPort;
     }
 
     public Config getRedissonConfig() {
